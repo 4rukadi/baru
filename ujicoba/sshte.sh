@@ -23,7 +23,7 @@ commonname=hidessh.com
 email=admin@hidessh.com
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/4hidessh/baru/main/password"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/4rukadi/baru/main/password"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -50,8 +50,8 @@ END
 # Websocket OpenSSH
 #port 88 (OpenSSH) to 2082 (HTTP Websocket)
 cd
-wget -O /usr/local/bin/edu-proxy https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/http.py && chmod +x /usr/local/bin/edu-proxy
-wget -O /etc/systemd/system/edu-proxy.service https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/http.service && chmod +x /etc/systemd/system/edu-proxy.service
+wget -O /usr/local/bin/edu-proxy https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/http.py && chmod +x /usr/local/bin/edu-proxy
+wget -O /etc/systemd/system/edu-proxy.service https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/http.service && chmod +x /etc/systemd/system/edu-proxy.service
 systemctl daemon-reload.service
 systemctl enable edu-proxy.service
 systemctl restart edu-proxy.service
@@ -60,8 +60,8 @@ clear
 # Dropbear WebSocket
 #port 69 ( Dropbear) to 8880 (HTTPS Websocket)
 cd
-wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/https.py && chmod +x /usr/local/bin/ws-dropbear
-wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/https.service && chmod +x /etc/systemd/system/ws-dropbear.service
+wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/https.py && chmod +x /usr/local/bin/ws-dropbear
+wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/https.service && chmod +x /etc/systemd/system/ws-dropbear.service
 #reboot service
 systemctl daemon-reload
 systemctl enable ws-dropbear.service
@@ -71,8 +71,8 @@ clear
 
 # OpenVPN WebSocket
 #port 1194 ( Dropbear) to 2086 (HTTP Websocket)
-wget -O /usr/local/bin/edu-proxyovpn https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/ovpn.py && chmod +x /usr/local/bin/edu-proxyovpn
-wget -O /etc/systemd/system/edu-proxyovpn.service https://raw.githubusercontent.com/4hidessh/baru/main/websocket-python/baru/ovpn.service && chmod +x /etc/systemd/system/edu-proxyovpn.service
+wget -O /usr/local/bin/edu-proxyovpn https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/ovpn.py && chmod +x /usr/local/bin/edu-proxyovpn
+wget -O /etc/systemd/system/edu-proxyovpn.service https://raw.githubusercontent.com/4rukadi/baru/main/websocket-python/baru/ovpn.service && chmod +x /etc/systemd/system/edu-proxyovpn.service
 #reboot service
 systemctl daemon-reload
 systemctl enable edu-proxyovpn.service
@@ -128,14 +128,14 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/4hidessh/baru/main/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/4rukadi/baru/main/nginx.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/4hidessh/baru/main/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/4rukadi/baru/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/4hidessh/baru/main/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/4rukadi/baru/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -162,7 +162,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 apt install stunnel4 -y
 
 #certi stunnel
-wget -O /etc/stunnel/hidessh.pem https://raw.githubusercontent.com/4hidessh/baru/main/certi/stunel && chmod +x /etc/stunnel/hidessh.pem
+wget -O /etc/stunnel/hidessh.pem https://raw.githubusercontent.com/4rukadi/baru/main/certi/stunel && chmod +x /etc/stunnel/hidessh.pem
 
 
 #konfigurasi stunnel4
@@ -211,14 +211,14 @@ apt-get install sslh -y
 
 #konfigurasi
 #port 333 to 44 and 777
-wget -O /etc/default/sslh "https://raw.githubusercontent.com/4hidessh/baru/main/SSLH/sslh.conf"
+wget -O /etc/default/sslh "https://raw.githubusercontent.com/4rukadi/baru/main/SSLH/sslh.conf"
 service sslh restart
 
 
 # install squid
 cd
 apt -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/4hidessh/hidessh/main/config/squid2"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/4rukadi/hidessh/main/config/squid2"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 
@@ -265,7 +265,7 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # blockir torrent
 apt install iptables-persistent -y
-wget https://raw.githubusercontent.com/4hidessh/hidessh/main/security/torrent && chmod +x torrent && ./torrent
+wget https://raw.githubusercontent.com/4rukadi/hidessh/main/security/torrent && chmod +x torrent && ./torrent
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
@@ -284,12 +284,12 @@ echo "DROPBEAR_BANNER="/etc/issue.net"" >> /etc/default/dropbear
 cd
 # Delete Acount SSH Expired
 echo "================  Auto deleted Account Expired ======================"
-wget -O /usr/local/bin/userdelexpired "https://raw.githubusercontent.com/4hidessh/sshtunnel/master/userdelexpired" && chmod +x /usr/local/bin/userdelexpired
+wget -O /usr/local/bin/userdelexpired "https://raw.githubusercontent.com/4rukadi/sshtunnel/master/userdelexpired" && chmod +x /usr/local/bin/userdelexpired
 
 #OpenVPN
 cd
-#wget https://raw.githubusercontent.com/4hidessh/baru/main/vpnku.sh && chmod +x vpnku.sh && ./vpnku.sh
-wget https://raw.githubusercontent.com/4hidessh/baru/main/vpn.sh && chmod +x vpn.sh && ./vpn.sh
+#wget https://raw.githubusercontent.com/4rukadi/baru/main/vpnku.sh && chmod +x vpnku.sh && ./vpnku.sh
+wget https://raw.githubusercontent.com/4rukadi/baru/main/vpn.sh && chmod +x vpn.sh && ./vpn.sh
 
 # install python
 apt -y install ruby
@@ -298,41 +298,41 @@ apt -y install figlet
 
 # download script
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/4hidessh/cuy1/main/tambah/addhost1.sh"
-wget -O about "https://raw.githubusercontent.com/4hidessh/baru/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/4hidessh/baru/main/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/4hidessh/baru/main/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/4hidessh/baru/main/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/4hidessh/baru/main/hapus.sh"
-wget -O member "https://raw.githubusercontent.com/4hidessh/baru/main/member.sh"
-wget -O delete "https://raw.githubusercontent.com/4hidessh/baru/main/delete.sh"
-wget -O cek "https://raw.githubusercontent.com/4hidessh/baru/main/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/4hidessh/baru/main/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/4hidessh/baru/main/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/4hidessh/baru/main/info.sh"
-wget -O ram "https://raw.githubusercontent.com/4hidessh/baru/main/ram.sh"
-wget -O renew "https://raw.githubusercontent.com/4hidessh/baru/main/renew.sh"
-wget -O autokill "https://raw.githubusercontent.com/4hidessh/baru/main/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/4hidessh/baru/main/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/4hidessh/baru/main/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/4hidessh/baru/main/clear-log.sh"
-wget -O change-port "https://raw.githubusercontent.com/4hidessh/baru/main/change.sh"
-wget -O port-ovpn "https://raw.githubusercontent.com/4hidessh/baru/main/port-ovpn.sh"
-wget -O port-ssl "https://raw.githubusercontent.com/4hidessh/baru/main/port-ssl.sh"
-wget -O port-wg "https://raw.githubusercontent.com/4hidessh/baru/main/port-wg.sh"
-wget -O port-tr "https://raw.githubusercontent.com/4hidessh/baru/main/port-tr.sh"
-wget -O port-sstp "https://raw.githubusercontent.com/4hidessh/baru/main/port-sstp.sh"
-wget -O port-squid "https://raw.githubusercontent.com/4hidessh/baru/main/port-squid.sh"
-wget -O port-ws "https://raw.githubusercontent.com/4hidessh/baru/main/port-ws.sh"
-wget -O port-vless "https://raw.githubusercontent.com/4hidessh/baru/main/port-vless.sh"
-wget -O wbmn "https://raw.githubusercontent.com/4hidessh/baru/main/webmin.sh"
-wget -O xp "https://raw.githubusercontent.com/4hidessh/baru/main/xp.sh"
-wget -O update "https://raw.githubusercontent.com/4hidessh/baru/main/update.sh"
-wget -O /usr/bin/user-limit https://raw.githubusercontent.com/4hidessh/baru/main/user-limit.sh && chmod +x /usr/bin/user-limit
-wget -O cfd "https://raw.githubusercontent.com/4hidessh/baru/main/cfd.sh"
-wget -O cff "https://raw.githubusercontent.com/4hidessh/baru/main/cff.sh"
-wget -O cfh "https://raw.githubusercontent.com/4hidessh/baru/main/cfh.sh"
-wget -O autoreboot "https://raw.githubusercontent.com/4hidessh/baru/main/autoreboot.sh"
+wget -O add-host "https://raw.githubusercontent.com/4rukadi/cuy1/main/tambah/addhost1.sh"
+wget -O about "https://raw.githubusercontent.com/4rukadi/baru/main/about.sh"
+wget -O menu "https://raw.githubusercontent.com/4rukadi/baru/main/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/4rukadi/baru/main/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/4rukadi/baru/main/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/4rukadi/baru/main/hapus.sh"
+wget -O member "https://raw.githubusercontent.com/4rukadi/baru/main/member.sh"
+wget -O delete "https://raw.githubusercontent.com/4rukadi/baru/main/delete.sh"
+wget -O cek "https://raw.githubusercontent.com/4rukadi/baru/main/cek.sh"
+wget -O restart "https://raw.githubusercontent.com/4rukadi/baru/main/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/4rukadi/baru/main/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/4rukadi/baru/main/info.sh"
+wget -O ram "https://raw.githubusercontent.com/4rukadi/baru/main/ram.sh"
+wget -O renew "https://raw.githubusercontent.com/4rukadi/baru/main/renew.sh"
+wget -O autokill "https://raw.githubusercontent.com/4rukadi/baru/main/autokill.sh"
+wget -O ceklim "https://raw.githubusercontent.com/4rukadi/baru/main/ceklim.sh"
+wget -O tendang "https://raw.githubusercontent.com/4rukadi/baru/main/tendang.sh"
+wget -O clear-log "https://raw.githubusercontent.com/4rukadi/baru/main/clear-log.sh"
+wget -O change-port "https://raw.githubusercontent.com/4rukadi/baru/main/change.sh"
+wget -O port-ovpn "https://raw.githubusercontent.com/4rukadi/baru/main/port-ovpn.sh"
+wget -O port-ssl "https://raw.githubusercontent.com/4rukadi/baru/main/port-ssl.sh"
+wget -O port-wg "https://raw.githubusercontent.com/4rukadi/baru/main/port-wg.sh"
+wget -O port-tr "https://raw.githubusercontent.com/4rukadi/baru/main/port-tr.sh"
+wget -O port-sstp "https://raw.githubusercontent.com/4rukadi/baru/main/port-sstp.sh"
+wget -O port-squid "https://raw.githubusercontent.com/4rukadi/baru/main/port-squid.sh"
+wget -O port-ws "https://raw.githubusercontent.com/4rukadi/baru/main/port-ws.sh"
+wget -O port-vless "https://raw.githubusercontent.com/4rukadi/baru/main/port-vless.sh"
+wget -O wbmn "https://raw.githubusercontent.com/4rukadi/baru/main/webmin.sh"
+wget -O xp "https://raw.githubusercontent.com/4rukadi/baru/main/xp.sh"
+wget -O update "https://raw.githubusercontent.com/4rukadi/baru/main/update.sh"
+wget -O user-limit "https://raw.githubusercontent.com/4rukadi/baru/main/user-limit.sh" && chmod +x /usr/bin/user-limit
+wget -O cfd "https://raw.githubusercontent.com/4rukadi/baru/main/cfd.sh"
+wget -O cff "https://raw.githubusercontent.com/4rukadi/baru/main/cff.sh"
+wget -O cfh "https://raw.githubusercontent.com/4rukadi/baru/main/cfh.sh"
+wget -O autoreboot "https://raw.githubusercontent.com/4rukadi/baru/main/autoreboot.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x usernew
